@@ -1,4 +1,4 @@
-use sea_orm_migration::{prelude::*, schema::*};
+use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
 pub struct Migration;
@@ -11,7 +11,13 @@ impl MigrationTrait for Migration {
                 Table::create()
                     .table(Block::Table)
                     .if_not_exists()
-                    .col(ColumnDef::new(Block::Id).integer().not_null().auto_increment().primary_key())
+                    .col(
+                        ColumnDef::new(Block::Id)
+                            .integer()
+                            .not_null()
+                            .auto_increment()
+                            .primary_key(),
+                    )
                     .col(ColumnDef::new(Block::Index).big_integer().not_null())
                     .col(ColumnDef::new(Block::Timestamp).big_integer().not_null())
                     .col(ColumnDef::new(Block::ProofOfWork).big_integer().not_null())
